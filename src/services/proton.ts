@@ -29,7 +29,6 @@ export async function login(restoreSession = false): Promise<ProtonSession | nul
       },
       transportOptions: {
         requestAccount: REQUEST_ACCOUNT,
-        backButton: true,
       },
       selectorOptions: {
         appName: APP_NAME,
