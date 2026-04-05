@@ -6,7 +6,19 @@ import { TransactionForm } from '@/components/TransactionForm';
 import { useProton } from '@/hooks/useProton';
 
 const Index = () => {
-  const { actor, isLoggedIn, loading, login, logout, transact } = useProton();
+  const {
+    actor,
+    isLoggedIn,
+    loading,
+    wallets,
+    activeId,
+    addWebAuthWallet,
+    addAnchorWallet,
+    setActive,
+    removeWallet,
+    disconnectAll,
+    transact,
+  } = useProton();
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -14,8 +26,13 @@ const Index = () => {
         actor={actor}
         isLoggedIn={isLoggedIn}
         loading={loading}
-        onLogin={login}
-        onLogout={logout}
+        wallets={wallets}
+        activeId={activeId}
+        onAddWebAuth={addWebAuthWallet}
+        onAddAnchor={addAnchorWallet}
+        onSetActive={setActive}
+        onRemoveWallet={removeWallet}
+        onDisconnectAll={disconnectAll}
       />
 
       <main className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
@@ -24,7 +41,8 @@ const Index = () => {
             XPR Network Template
           </h2>
           <p className="mt-2 max-w-md text-muted-foreground">
-            A minimal starter for building apps on XPR Network. Connect your wallet and interact with smart contracts.
+            A minimal starter for building apps on XPR Network. Use WebAuth or Anchor to connect,
+            add multiple accounts from the header menu, switch the active signer, and push transactions.
           </p>
         </div>
 
