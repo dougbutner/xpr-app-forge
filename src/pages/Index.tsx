@@ -41,7 +41,9 @@ const Index = () => {
             XPR Network multi login template
           </h2>
           <p className="mt-2 max-w-md text-muted-foreground">
-            Build on XPR with EASY and other{' '}
+            Use this template for everyday XPR work: ship a portfolio or activity view, move tokens, wire a game
+            or backend to a signed account, read chain data, try DeFi flows, or demo “connect and transact” in a
+            talk—without rebuilding wallet plumbing. It pairs naturally with EASY and other{' '}
             <a
               href="https://flex.report"
               target="_blank"
@@ -50,10 +52,15 @@ const Index = () => {
             >
               Flextokens
             </a>
-            — balances, swaps, and contract actions. The{' '}
-            <span className="text-foreground/90">skill/</span> folder has markdown guides (start with{' '}
-            <span className="text-foreground/90">flextokens.md</span>) for chain-wide builds with an AI or by hand.
-            Use WebAuth or Anchor, multiple accounts in the header, switch signer, push transactions.
+            {' '}
+            when your product touches those communities. The{' '}
+            <span className="font-medium text-foreground/90">skill/</span> folder in the repository bundles
+            markdown guides for you or an AI to follow. The most important threads run through{' '}
+            <span className="text-foreground/90">
+              contracts, wallets, tokens, Flextokens, NFTs, DeFi, RPC, staking, accounts, testing
+            </span>
+            . Connect with WebAuth or Anchor, use multiple accounts in the header, switch the active signer, and
+            push transactions.
           </p>
         </div>
 
