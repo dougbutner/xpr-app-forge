@@ -53,7 +53,7 @@ export function Header({
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
           <span className="text-lg font-bold text-primary-foreground">X</span>
         </div>
-        <h1 className="text-xl font-semibold text-foreground">XPR Template</h1>
+        <h1 className="text-xl font-semibold text-foreground">XPR Network multi login template</h1>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-3">
@@ -94,7 +94,7 @@ export function Header({
                         key={w.id}
                         className={cn(
                           'flex cursor-pointer items-center gap-2 py-2',
-                          active && 'bg-accent'
+                          active && 'bg-accent text-accent-foreground'
                         )}
                         onSelect={() => onSetActive(w.id)}
                       >
@@ -109,13 +109,23 @@ export function Header({
                           <div className="truncate font-medium">
                             {w.provider === 'webauth' ? w.auth.actor : w.actor}
                           </div>
-                          <div className="truncate text-xs text-muted-foreground">
+                          <div
+                            className={cn(
+                              'truncate text-xs',
+                              active ? 'text-accent-foreground/75' : 'text-muted-foreground'
+                            )}
+                          >
                             {walletTypeLabel(w)}
                           </div>
                         </div>
                         <button
                           type="button"
-                          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                          className={cn(
+                            'flex h-7 w-7 shrink-0 items-center justify-center rounded-md hover:bg-destructive/10 hover:text-destructive',
+                            active
+                              ? 'text-accent-foreground/80'
+                              : 'text-muted-foreground'
+                          )}
                           aria-label="Disconnect wallet"
                           onPointerDown={(e) => e.preventDefault()}
                           onClick={() => void onRemoveWallet(w.id)}
@@ -129,14 +139,14 @@ export function Header({
               </ScrollArea>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                className="gap-2 border border-dashed border-primary/50 text-primary focus:text-primary"
+                className="gap-2 border border-dashed border-primary/50 text-primary data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
                 onSelect={() => void onAddWebAuth()}
               >
                 <Plus className="h-4 w-4" />
                 Add WebAuth
               </DropdownMenuItem>
               <DropdownMenuItem
-                className="gap-2 border border-dashed border-primary/50 text-primary focus:text-primary"
+                className="gap-2 border border-dashed border-primary/50 text-primary data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
                 onSelect={() => void onAddAnchor()}
               >
                 <Anchor className="h-4 w-4" />

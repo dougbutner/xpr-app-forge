@@ -2,48 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* XPR Network dark theme design system. All colors HSL. */
+/* Black & gold dark theme. Primary = rich gold; accent = lighter gold (highlights, hovers). */
 
 @layer base {
   :root {
-    --background: 240 20% 7%;
-    --foreground: 220 20% 92%;
+    --background: 0 0% 5%;
+    --foreground: 45 12% 94%;
 
-    --card: 240 15% 11%;
-    --card-foreground: 220 20% 92%;
+    --card: 40 8% 8%;
+    --card-foreground: 45 12% 94%;
 
-    --popover: 240 15% 11%;
-    --popover-foreground: 220 20% 92%;
+    --popover: 40 8% 8%;
+    --popover-foreground: 45 12% 94%;
 
-    --primary: 255 100% 69%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 43 78% 48%;
+    --primary-foreground: 0 0% 6%;
 
-    --secondary: 240 12% 16%;
-    --secondary-foreground: 220 20% 92%;
+    --secondary: 40 10% 14%;
+    --secondary-foreground: 45 12% 92%;
 
-    --muted: 240 10% 18%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 40 8% 12%;
+    --muted-foreground: 45 8% 55%;
 
-    --accent: 255 80% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 46 82% 58%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 20%;
-    --input: 240 10% 20%;
-    --ring: 255 100% 69%;
+    --border: 40 12% 18%;
+    --input: 40 10% 16%;
+    --ring: 46 82% 58%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 240 15% 9%;
-    --sidebar-foreground: 220 20% 92%;
-    --sidebar-primary: 255 100% 69%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 12% 16%;
-    --sidebar-accent-foreground: 220 20% 92%;
-    --sidebar-border: 240 10% 20%;
-    --sidebar-ring: 255 100% 69%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 45 12% 94%;
+    --sidebar-primary: 43 78% 48%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 40 10% 14%;
+    --sidebar-accent-foreground: 45 12% 92%;
+    --sidebar-border: 40 12% 18%;
+    --sidebar-ring: 46 82% 58%;
 
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;

@@ -1,6 +1,6 @@
 import { Chains } from '@wharfkit/common';
 
-export const APP_NAME = 'XPR Template';
+export const APP_NAME = 'XPR Network multi login template';
 export const REQUEST_ACCOUNT = 'xpr.template';
 export const CHAIN_ENDPOINTS = ['https://proton.greymass.com'];
 
