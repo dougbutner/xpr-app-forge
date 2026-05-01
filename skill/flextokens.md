@@ -64,7 +64,7 @@ Action names below were checked against live ABIs via chain RPC (`get_abi`, main
 
 ## DeFi touchpoints
 
-- Swaps: Alcor / proton.alcor-style swap URLs (input often `XUSDC-xtokens` or similar).
+- Swaps: **`https://alcor.exchange/v/xpr/swap`** / **`https://alcor.exchange/v/xpr/swap-widget`** (ids e.g. `XUSDC-xtokens`).
 - Optional **farm** rewards may exist per token—check current farm UIs and docs.
 
 ---

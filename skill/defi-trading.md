@@ -22,6 +22,14 @@ MetalX is the primary decentralized exchange on XPR Network - an order book DEX 
 
 ---
 
+## Alcor on XPR (AMM + orderbook)
+
+**`alcor`** (book) + **`swap.alcor`** (AMM). UI: **`https://alcor.exchange/v/xpr/...`** ([`alcor-widgets-ecosystem.md`](alcor-widgets-ecosystem.md)). REST/WS: **`proton.alcor.exchange`**; bare **`alcor.exchange/api`** → WAX. **[`alcor-exchange.md`](alcor-exchange.md)**.
+
+MetalX = **`dex`** + **`dex.api.*.metalx.com`** (above, **[`metalx-dex.md`](metalx-dex.md)**). Alcor = **`swap.alcor`**/**`alcor`**, memos, **`proton.*`** API host.
+
+---
+
 ## DEX API Queries
 
 ### Get All Markets

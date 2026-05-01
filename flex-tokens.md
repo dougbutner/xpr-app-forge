@@ -10,7 +10,7 @@
 Flex Tokens are tokens on **XPR Network** that apply a **transfer tax** and **redistribute** (reflect) proceeds to holders and/or **burn** a portion. Holders receive proportional rewards **directly in their wallets** as a result of activity on the token.
 
 - Each Flex token implements mechanics slightly differently, but they share the idea that you can **choose (“flex”) which token you receive daily** as your reward—options mentioned include **BTC**, **SOL**, other Flex tokens, and more.
-- Optional **farming rewards** may also apply: [Alcor farm (proton.alcor.exchange)](https://proton.alcor.exchange/farm).
+- Optional **farming rewards** may also apply: [Alcor farms](https://alcor.exchange/v/xpr/farm).
 
 **Tagline from the guide:** “Buy once and stack tokens forever.”
 
@@ -34,10 +34,11 @@ Flex Tokens are tokens on **XPR Network** that apply a **transfer tax** and **re
 
 1. **Wallet** — Get a [WebAuth wallet](https://webauth.com/getStarted) and fund it (e.g. via KuCoin), or complete **KYC** for in-app bridging.
 2. **On-ramp** — KYC to bring in **USDC**, **BTC**, etc.; bank options mentioned for **US**, **Canada**, **Australia**.
-3. **Swap** into a Flex token (examples from the page):
-   - [EASY-mon3y](https://proton.alcor.exchange/swap?input=XUSDC-xtokens&output=EASY-mon3y)
-   - [WON-w3won](https://proton.alcor.exchange/swap?input=XUSDC-xtokens&output=WON-w3won)
-   - [MEME-m3m3](https://proton.alcor.exchange/swap?input=XUSDC-xtokens&output=MEME-m3m3)
+3. **Swap** into a Flex token (examples from the page — canonical Alcor web paths use **`/v/xpr/`** on `alcor.exchange`):
+   - [EASY-mon3y](https://alcor.exchange/v/xpr/swap?input=XUSDC-xtokens&output=EASY-mon3y)
+   - [WON-w3won](https://alcor.exchange/v/xpr/swap?input=XUSDC-xtokens&output=WON-w3won)
+   - [MEME-m3m3](https://alcor.exchange/v/xpr/swap?input=XUSDC-xtokens&output=MEME-m3m3)
+   - Example **token analytics** (volume / depth): [EASY-mon3y](https://alcor.exchange/v/xpr/analytics/tokens/easy-mon3y)
 4. **Optional — choose reward token** via contract actions (see [Contracts & explorer actions](#contracts--explorer-actions)).
 
 ---

@@ -53,7 +53,8 @@ It is a **template**, not a finished product: you add screens, business logic, a
 │   │   ├── proton.ts           # Proton link / WebAuth helpers
 │   │   └── wharfSessionKit.ts  # Anchor / Wharf setup
 │   └── lib/utils.ts
-├── .agents/skills/smart-contracts/ # Agent Skill: XPR smart contract guidance → `skill/*.md`
+├── .agents/skills/smart-contracts/ # Agent Skill: XPR smart contracts → `skill/*.md`
+├── .agents/skills/alcor-exchange/  # Agent Skill: Alcor DEX / AMM integration → `skill/alcor-*.md`
 ├── skill/                      # XPR + ecosystem markdown modules (start at skill/SKILL.md)
 ├── flex-tokens.md              # Deep reference: Flextokens (EASY, WON, MEME, …)
 ├── AI_BUILDER_GUIDE.md         # Conventions: UI + WAX NFT metadata + Loot staking
@@ -98,7 +99,8 @@ Point your wallet and RPC endpoints at **XPR mainnet or testnet** as appropriate
 | [`skill/SKILL.md`](skill/SKILL.md) | What the **`skill/`** folder is for; entry to module files. |
 | [`.agents/skills/smart-contracts/SKILL.md`](.agents/skills/smart-contracts/SKILL.md) | Cursor Agent Skill for **smart contract** work — links to **`skill/smart-contracts.md`** and safety notes. |
 | [`skill/flextokens.md`](skill/flextokens.md) | Flextokens on XPR (contracts, actions, links). |
-| [`skill/alcor-exchange.md`](skill/alcor-exchange.md) | Alcor DEX: `swap.alcor`, APIs, widgets, farms, TWAP oracles. |
+| [`skill/alcor-exchange.md`](skill/alcor-exchange.md) | Alcor: index + links to split modules (`alcor-swap-amm`, API/WebSocket, orderbook, widgets, overview). |
+| [`.agents/skills/alcor-exchange/SKILL.md`](.agents/skills/alcor-exchange/SKILL.md) | Cursor Agent Skill for **Alcor** (not MetalX `dex` API). |
 | [`flex-tokens.md`](flex-tokens.md) | Long-form Flextokens reference + explorer links. |
 | [`AI_BUILDER_GUIDE.md`](AI_BUILDER_GUIDE.md) | Styling rules + mandatory **WAX NFT metadata** and **Loot** staking references for NFT work. |
 | [`Welcome.md`](Welcome.md) | Suggested **first conversation** with a user or AI before a big build. |
@@ -112,7 +114,7 @@ Point your wallet and RPC endpoints at **XPR mainnet or testnet** as appropriate
 - **You use Cursor or another AI** and want **grounding files** ([`skill/`](skill/), Flextokens, Alcor; for contracts use [`.agents/skills/smart-contracts/SKILL.md`](.agents/skills/smart-contracts/SKILL.md)) so generated code matches XPR and ecosystem norms.
 - **You teach or demo** “connect → pick account → push action” without writing wallet plumbing first.
 - **You plan WAX + XPR products** and need one repo that documents **NFT metadata standards** and **staking** expectations alongside the XPR template (`AI_BUILDER_GUIDE.md`).
-- **You embed swaps or education** and will link out to [flex.report](https://flex.report) or Alcor from a branded black-and-gold UI.
+- **You embed swaps or education** and will link out to [flex.report](https://flex.report) or Alcor using **`https://alcor.exchange/v/xpr/...`** (and **`/v/wax/...`** on WAX when relevant)—prefer those **new** routed URLs over legacy subdomains whenever they work.
 
 ---
 
@@ -136,7 +138,7 @@ Use these (or variants) with an AI assistant **in this repo** so it can use **`s
    *“Create a small tool page: input contract, table, scope, and limit; fetch rows from the public XPR RPC and render them in a table component. No wallet required for reads.”*
 
 6. **Alcor price / markets panel**  
-   *“Using `skill/alcor-exchange.md`, add a read-only panel that calls `proton.alcor.exchange` (or `wax`) markets API for a given market id and shows last price and 24h volume.”*
+   *“Using `skill/alcor-exchange.md`, add a read-only panel that `fetch`es `GET https://proton.alcor.exchange/api/markets/:id` (or `https://wax.alcor.exchange/api/...` for WAX)—never bare `alcor.exchange/api` for Proton. Deep-link users with **new** URLs: `https://alcor.exchange/v/xpr/...` or `https://alcor.exchange/v/wax/...` (swap, analytics, etc.).”*
 
 7. **New route + layout**  
    *“Add a `/dashboard` route with a shared layout (header wallet menu preserved), placeholder sections for ‘Portfolio’ and ‘Activity’, and navigation between home and dashboard.”*
