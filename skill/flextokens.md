@@ -17,20 +17,48 @@ Use this module when building dApps that interact with **Flex tokens**—reflect
 | **MEME** | Reflection + burn split |
 | **GRAMS** | Same family; confirm tokenomics on Notion / explorer |
 
-Symbols on DEXs often look like **EASY-mon3y**, **WON-w3won**, **MEME-m3m3** (pair naming on Alcor-style UIs).
+Symbols on DEXs often look like **GRAMS-gold.mon3y**, **EASY-mon3y**, **WON-w3won**, **MEME-m3m3** (pair naming on Alcor-style UIs).
 
 ---
 
 ## Contracts & actions (integration surface)
 
-Always **verify** `account`, `action`, and ABI on [XPR Network Explorer](https://explorer.xprnetwork.org/) before mainnet calls.
+Always **re-verify** `account`, `action`, and ABI on [XPR Network Explorer](https://explorer.xprnetwork.org/) before mainnet calls. In-repo sources: `contracts/TEMP/takeiteasy.hpp` (**takeiteasy**), `contracts/TEMP/seedoflife.hpp` (**seedoflife**), `contracts/TEMP/grams.hpp` (**grams**).
 
-| Area | Contract hints | Typical actions |
-|------|----------------|-----------------|
-| EASY / MEME flows | `mon3y`, `m3m3` | `setflextoken`, `distribute`, `noflexzone` (one-way opt-out of fees/rewards) |
-| WON | `w3won` | `sprouttoken`, `radiate`, `optoutoftax` |
+Mainnet accounts (explorer): [gold.mon3y](https://explorer.xprnetwork.org/account/gold.mon3y) (GRAMS), [w3won](https://explorer.xprnetwork.org/account/w3won) (WON), [mon3y](https://explorer.xprnetwork.org/account/mon3y) (EASY), [m3m3](https://explorer.xprnetwork.org/account/m3m3) (MEME).
 
-**Patterns for UIs:** read pending reward context via explorer or tables; let users **change reward token** through `setflextoken` / `sprouttoken` with the correct symbol format; never assume opt-out is reversible.
+Action names below were checked against live ABIs via chain RPC (`get_abi`, mainnet); explorer shows the same ABI.
+
+### GRAMS — `gold.mon3y` (interface: **grams**)
+
+| Category | Actions |
+|----------|---------|
+| Token ops | `forge`, `mint`, `smelt`, `transfer`, `open`, `close` |
+| Reflection / config | `reflect`, `setconfig` |
+| Flex pools & reward token | `addpool`, `interestoken` |
+| Holder tree (referral-style) | `inheritance`, `inheritmemo` |
+| Tax / ban | `renounce` |
+
+### WON — `w3won` (interface: **seedoflife**)
+
+| Category | Actions |
+|----------|---------|
+| Token ops | `create`, `issue`, `burn`, `transfer`, `open`, `close` |
+| Reflection / config | `radiate`, `setconfig` |
+| Flex pools & reward token | `addpool`, `sprouttoken` |
+| Holder tree | `settree`, `settreememo` |
+| Tax opt-out | `optoutoftax` |
+
+### EASY — `mon3y` and MEME — `m3m3` (same interface: **takeiteasy**)
+
+| Category | Actions |
+|----------|---------|
+| Token ops | `create`, `issue`, `burn`, `transfer`, `open`, `close` |
+| Reflection / config | `distribute`, `setconfig` |
+| Flex pools & reward token | `setflexpool`, `setflextoken` |
+| Fee / rewards opt-out | `noflexzone` |
+
+**Patterns for UIs:** read pending reward context via explorer or tables; let users **change reward token** with `setflextoken` (mon3y / m3m3), `sprouttoken` (w3won), or `interestoken` (gold.mon3y)—each account uses its own action name and parameter shapes; never assume opt-out (`noflexzone`, `optoutoftax`, `renounce`) is reversible without checking the contract.
 
 ---
 

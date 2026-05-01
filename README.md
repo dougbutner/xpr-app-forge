@@ -1,6 +1,6 @@
 # XPR App Forge — Multi-login XPR Network template
 
-A **Vite + React + TypeScript** starter for **XPR Network** dApps with **WebAuth** and **Anchor** wallets, **multiple accounts**, a single **active signer**, and a generic **contract action** form. The repo ships **black-and-gold** UI (shadcn-style components), optional **Flextokens** positioning, and a **`skill/`** knowledge pack you can pair with an AI assistant or read yourself.
+A **Vite + React + TypeScript** starter for **XPR Network** dApps with **WebAuth** and **Anchor** wallets, **multiple accounts**, a single **active signer**, and a generic **contract action** form. The repo ships **black-and-gold** UI (shadcn-style components), optional **Flextokens** positioning, a **`skill/`** markdown knowledge pack for XPR / EOSIO topics, and a **smart-contracts** Cursor Agent Skill under **`.agents/skills/smart-contracts/`** that points into **`skill/`** for contract work.
 
 ---
 
@@ -53,7 +53,8 @@ It is a **template**, not a finished product: you add screens, business logic, a
 │   │   ├── proton.ts           # Proton link / WebAuth helpers
 │   │   └── wharfSessionKit.ts  # Anchor / Wharf setup
 │   └── lib/utils.ts
-├── skill/                      # XPR + ecosystem markdown modules (see skill/SKILL.md)
+├── .agents/skills/smart-contracts/ # Agent Skill: XPR smart contract guidance → `skill/*.md`
+├── skill/                      # XPR + ecosystem markdown modules (start at skill/SKILL.md)
 ├── flex-tokens.md              # Deep reference: Flextokens (EASY, WON, MEME, …)
 ├── AI_BUILDER_GUIDE.md         # Conventions: UI + WAX NFT metadata + Loot staking
 ├── Welcome.md                  # Onboarding script / questions for new build sessions
@@ -94,7 +95,8 @@ Point your wallet and RPC endpoints at **XPR mainnet or testnet** as appropriate
 
 | Doc | Purpose |
 |-----|---------|
-| [`skill/SKILL.md`](skill/SKILL.md) | Index of **skill/*.md** modules (contracts, CLI, web SDK, DeFi, NFTs, **flextokens**, **alcor-exchange**, …). |
+| [`skill/SKILL.md`](skill/SKILL.md) | What the **`skill/`** folder is for; entry to module files. |
+| [`.agents/skills/smart-contracts/SKILL.md`](.agents/skills/smart-contracts/SKILL.md) | Cursor Agent Skill for **smart contract** work — links to **`skill/smart-contracts.md`** and safety notes. |
 | [`skill/flextokens.md`](skill/flextokens.md) | Flextokens on XPR (contracts, actions, links). |
 | [`skill/alcor-exchange.md`](skill/alcor-exchange.md) | Alcor DEX: `swap.alcor`, APIs, widgets, farms, TWAP oracles. |
 | [`flex-tokens.md`](flex-tokens.md) | Long-form Flextokens reference + explorer links. |
@@ -107,7 +109,7 @@ Point your wallet and RPC endpoints at **XPR mainnet or testnet** as appropriate
 
 - **You want a clean XPR dApp shell** with professional wallet UX (multi-account, not only single-session).
 - **You are prototyping Flextokens or XPR DeFi** and need a place to call `mon3y`, `xtokens`, or other contracts from a signed-in user.
-- **You use Cursor or another AI** and want **grounding files** (`skill/`, Flextokens, Alcor) so generated code matches XPR and ecosystem norms.
+- **You use Cursor or another AI** and want **grounding files** ([`skill/`](skill/), Flextokens, Alcor; for contracts use [`.agents/skills/smart-contracts/SKILL.md`](.agents/skills/smart-contracts/SKILL.md)) so generated code matches XPR and ecosystem norms.
 - **You teach or demo** “connect → pick account → push action” without writing wallet plumbing first.
 - **You plan WAX + XPR products** and need one repo that documents **NFT metadata standards** and **staking** expectations alongside the XPR template (`AI_BUILDER_GUIDE.md`).
 - **You embed swaps or education** and will link out to [flex.report](https://flex.report) or Alcor from a branded black-and-gold UI.
@@ -116,7 +118,7 @@ Point your wallet and RPC endpoints at **XPR mainnet or testnet** as appropriate
 
 ## Example prompts for common blockchain builds
 
-Use these (or variants) with an AI assistant **in this repo** so it can use `skill/`, `useProton`, and your conventions. Replace names and contracts with yours.
+Use these (or variants) with an AI assistant **in this repo** so it can use **`skill/`** (and the **smart-contracts** skill for on-chain work), `useProton`, and your conventions. Replace names and contracts with yours.
 
 1. **Token balance dashboard**  
    *“Add a page that uses the connected XPR account to fetch and display balances for XPR and selected `xtokens` assets via RPC, with loading and error states. Use the existing `useProton` hook and match the black-and-gold UI.”*
