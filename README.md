@@ -6,7 +6,7 @@ A **Vite + React + TypeScript** starter for **XPR Network** dApps with **WebAuth
 
 ## What this project does
 
-- **Connects** users via **WebAuth** (`@proton/web-sdk`) or **Anchor** (WharfKit session + wallet plugin).
+- **Connects** users via **WebAuth** browser wallet or **WebAuth mobile app** ([XPR Network Web SDK](https://docs.xprnetwork.org/client-sdks/web.html): `@proton/web-sdk` + `@proton/link`) or **Anchor** (WharfKit session + wallet plugin).
 - **Remembers several wallets** (per-account storage prefixes + manifest) and lets users **switch the active signer** from the header.
 - **Signs transactions** through the active wallet: the home page includes a **TransactionForm** where you enter `contract`, `action`, and JSON `data` to push arbitrary actions to XPR.
 - **Routes** with React Router (`/`, catch-all `NotFound`).
@@ -23,7 +23,7 @@ It is a **template**, not a finished product: you add screens, business logic, a
 | Build | Vite 5 |
 | UI | React 18, Tailwind, Radix-based UI in `src/components/ui/` |
 | State / server cache | TanStack React Query |
-| XPR / Proton | `@proton/web-sdk`, chain config in `walletConstants.ts` |
+| XPR Network Web SDK | `@proton/web-sdk` ^5, `@proton/link` ^5, chain config in `walletConstants.ts` |
 | Anchor | `@wharfkit/session`, `@wharfkit/wallet-plugin-anchor`, web renderer |
 | Routing | `react-router-dom` |
 | Tests | Vitest, Testing Library, Playwright (dev dependency) |
@@ -47,6 +47,7 @@ It is a **template**, not a finished product: you add screens, business logic, a
 │   │   ├── Index.tsx           # Landing + form + footer
 │   │   └── NotFound.tsx
 │   ├── services/
+│   │   ├── protonWebSdk.ts     # Dynamic SDK loader (mobile deep link)
 │   │   ├── walletConstants.ts  # APP_NAME, REQUEST_ACCOUNT, XPR chain
 │   │   ├── walletManifest.ts   # Multi WebAuth session manifest (localStorage)
 │   │   ├── walletSessions.ts   # Restore/connect/transact orchestration

@@ -143,7 +143,7 @@ export function Header({
                 onSelect={() => void onAddWebAuth()}
               >
                 <Plus className="h-4 w-4" />
-                Add WebAuth
+                Add WebAuth / mobile
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="gap-2 border border-dashed border-primary/50 text-primary data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground"
@@ -170,7 +170,7 @@ export function Header({
               className="gap-2"
             >
               <LogIn className="h-4 w-4" />
-              {loading ? 'Restoring…' : 'WebAuth'}
+              {loading ? 'Restoring…' : 'WebAuth / mobile'}
             </Button>
             <Button
               onClick={() => void onAddAnchor()}

@@ -89,7 +89,7 @@ const Index = () => {
           </a>
           .
         </p>
-        <p className="mt-2">Built on XPR Network — Powered by Proton Web SDK</p>
+        <p className="mt-2">Built on XPR Network — XPR Network Web SDK (@proton/web-sdk)</p>
       </footer>
     </div>
   );

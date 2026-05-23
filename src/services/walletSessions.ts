@@ -1,12 +1,18 @@
 /**
- * WebAuth: @proton/web-sdk (walletType forced to webauth).
+ * WebAuth / WebAuth mobile: @proton/web-sdk (XPR Network Web SDK).
  * Anchor: WharfKit SessionKit (default WebRenderer).
  */
-import ConnectWallet from '@proton/web-sdk';
 import type { Session } from '@wharfkit/session';
 import type { ProtonSession } from './proton';
 import { transact as protonTransact } from './proton';
-import { APP_NAME, REQUEST_ACCOUNT, CHAIN_ENDPOINTS } from './walletConstants';
+import { ensureProtonWebSdk } from './protonWebSdk';
+import {
+  APP_NAME,
+  APP_LOGO,
+  REQUEST_ACCOUNT,
+  CHAIN_ENDPOINTS,
+  XPR_CHAIN_ID_HEX,
+} from './walletConstants';
 import {
   loadManifest,
   saveManifest,
@@ -25,6 +31,9 @@ import {
   stableAnchorWalletId,
   transactAnchor,
 } from './wharfSessionKit';
+
+/** Mobile app (`proton`) + browser wallet (`webauth`). Anchor uses WharfKit separately. */
+const WEBAUTH_ENABLED_WALLETS = ['proton', 'webauth'] as const;
 
 export type LoadedWebAuthWallet = WalletManifestEntry &
   ProtonSession & {
@@ -49,17 +58,20 @@ export function walletActor(w: LoadedWallet): string {
 }
 
 export function walletTypeLabel(w: LoadedWallet): string {
-  return w.provider === 'anchor' || w.walletType === 'anchor'
-    ? 'Anchor Wallet'
-    : 'WebAuth';
+  if (w.provider === 'anchor' || w.walletType === 'anchor') return 'Anchor Wallet';
+  if (w.walletType === 'proton') return 'WebAuth (mobile app)';
+  return 'WebAuth (browser)';
 }
 
 async function connectWebAuthWallet(options: {
   storage: PrefixLinkStorage;
   restoreSession: boolean;
 }): Promise<ProtonSession | null> {
-  const res = (await ConnectWallet({
+  const ConnectWallet = await ensureProtonWebSdk();
+
+  const res = await ConnectWallet({
     linkOptions: {
+      chainId: XPR_CHAIN_ID_HEX,
       endpoints: CHAIN_ENDPOINTS,
       storage: options.storage,
       restoreSession: options.restoreSession,
@@ -67,15 +79,14 @@ async function connectWebAuthWallet(options: {
     transportOptions: {
       requestAccount: REQUEST_ACCOUNT,
     },
-    selectorOptions: {
-      appName: APP_NAME,
-      walletType: 'webauth',
-    } as Record<string, unknown>,
-  })) as {
-    link?: unknown;
-    session?: { auth: { actor: string; permission: string }; chainId?: unknown };
-    error?: unknown;
-  };
+    selectorOptions: options.restoreSession
+      ? { appName: APP_NAME, appLogo: APP_LOGO }
+      : {
+          appName: APP_NAME,
+          appLogo: APP_LOGO,
+          enabledWalletTypes: [...WEBAUTH_ENABLED_WALLETS],
+        },
+  });
 
   if (res?.error) {
     console.error('ConnectWallet error:', res.error);
@@ -136,7 +147,7 @@ export async function restoreAllWallets(): Promise<LoadedWallet[]> {
       actor: session.auth.actor,
       permission: session.auth.permission,
       chainId,
-      walletType: walletType === 'webauth' ? 'webauth' : entry.walletType,
+      walletType: walletType || entry.walletType || 'webauth',
     };
     updatedManifest.push(next);
     webAuthLoaded.push(toLoadedWebAuth(next, session));
