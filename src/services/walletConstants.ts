@@ -1,6 +1,6 @@
 import { Chains } from '@wharfkit/common';
 
-export const APP_NAME = 'XPR Network multi login template';
+export const APP_NAME = 'XPR Network game template';
 export const REQUEST_ACCOUNT = 'xpr.template';
 /** Multiple RPC endpoints for fault tolerance (XPR Network mainnet). */
 export const CHAIN_ENDPOINTS = [

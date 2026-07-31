@@ -42,7 +42,7 @@ export function Header({
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
           <span className="text-lg font-bold text-primary-foreground">X</span>
         </div>
-        <h1 className="text-xl font-semibold">XPR Network multi login template</h1>
+        <h1 className="text-xl font-semibold">XPR Network game template</h1>
       </div>
 
       <div className="flex items-center gap-2">
