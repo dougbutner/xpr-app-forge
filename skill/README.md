@@ -1,11 +1,13 @@
 # `skill/` — XPR reference markdown
 
-Human/AI grounding for EOSIO/XPR (contracts, CLI, RPC, DeFi, NFTs). **Not** app source and **not** a Cursor Agent Skill—those live under **`.agents/skills/`** and point here.
+Canonical routing table (upstream **v2.3.2**): **[`SKILL.md`](SKILL.md)** from [XPRNetwork/xpr-network-dev-skill](https://github.com/XPRNetwork/xpr-network-dev-skill).
 
-**Contracts:** [`smart-contracts.md`](smart-contracts.md), [`safety-guidelines.md`](safety-guidelines.md).
+Cursor Agent Skills live under **`.agents/skills/`** and point into this folder.
 
-Other topics: CLI, web SDK, RPC, flextokens, staking—each **`.md`** here.
+**Contracts / safety:** [`smart-contracts.md`](smart-contracts.md), [`safety-guidelines.md`](safety-guidelines.md).
 
-**Alcor:** Prefer **`https://alcor.exchange/v/<slug>/...`** (**XPR**, **WAX**); **`*.alcor.exchange`** fallback. **EOS/Telos:** **`eos.alcor.exchange`** / **`telos.alcor.exchange`** only (no **`/v/eos/`**, **`/v/telos/`**). [`alcor-widgets-ecosystem.md`](alcor-widgets-ecosystem.md), [`alcor-exchange.md`](alcor-exchange.md), [`alcor-overview-ui.md`](alcor-overview-ui.md), [`alcor-orderbook.md`](alcor-orderbook.md), [`alcor-swap-amm.md`](alcor-swap-amm.md), [`alcor-api-realtime.md`](alcor-api-realtime.md).
+**Alcor:** Upstream ABI guide [`alcor-dex.md`](alcor-dex.md). Local extras (keep): [`alcor-exchange.md`](alcor-exchange.md) index + [`alcor-overview-ui.md`](alcor-overview-ui.md), [`alcor-orderbook.md`](alcor-orderbook.md), [`alcor-swap-amm.md`](alcor-swap-amm.md), [`alcor-api-realtime.md`](alcor-api-realtime.md), [`alcor-widgets-ecosystem.md`](alcor-widgets-ecosystem.md) — prefer **`https://alcor.exchange/v/xpr/...`** for user-facing XPR links; **`proton.alcor.exchange`** for REST/Socket.IO.
 
-**XPR DEX APIs:** [`metalx-dex.md`](metalx-dex.md), [`simpledex.md`](simpledex.md), [`defi-trading.md`](defi-trading.md).
+**Also local:** [`flextokens.md`](flextokens.md).
+
+**Other upstream modules:** CLI, web SDK, RPC, MetalX, SimpleDEX, LOAN, staking, NFTs, oracles — see the tables in [`SKILL.md`](SKILL.md).

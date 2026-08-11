@@ -6,7 +6,7 @@ This guide covers building payment systems, invoicing, and e-commerce integratio
 
 XPR Network is ideal for payments due to:
 - **Zero gas fees** - Recipients get full amount
-- **Fast finality** - ~2 second confirmation
+- **Fast inclusion** - ~2 second first-block confirmation; full LIB finality ~3 minutes
 - **Human-readable accounts** - Easy to share (@merchant)
 - **Memo field** - Attach order IDs, invoices, metadata
 
@@ -517,7 +517,8 @@ class SubscriptionBot {
       for (const sub of rows) {
         if (!sub.active) continue;
 
-        await api.transact({
+        // Sign via proton CLI keychain — see backend-patterns.md for createCliSession setup
+        await session.link.transact({
           actions: [{
             account: 'subsmanager',
             name: 'charge',

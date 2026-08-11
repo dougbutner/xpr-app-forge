@@ -29,13 +29,18 @@ Comprehensive list of endpoints, tools, documentation, and community resources f
 
 ### Mainnet
 
-| Endpoint | Provider | Notes |
-|----------|----------|-------|
-| `https://proton.eosusa.io` | EOSUSA | Primary, reliable |
-| `https://api.protonnz.com` | ProtonNZ | Good backup |
-| `https://api-xprnetwork-main.saltant.io` | Saltant | v1 + v2 (Hyperion) |
-| `https://proton.protonuk.io` | ProtonUK | Alternative |
-| `https://proton.cryptolions.io` | CryptoLions | Alternative |
+Verified May 2026 by hitting `/v1/chain/get_info` and `/v2/history/get_actions` on each. Some providers serve `/v1/chain/*` only; Hyperion (`/v2/history/*`, `/v2/state/*`) requires a heavier indexer not every operator hosts.
+
+| Endpoint | Provider | RPC | Hyperion |
+|----------|----------|-----|----------|
+| `https://proton.eosusa.io` | EOSUSA | ✓ | ✓ |
+| `https://proton.protonuk.io` | ProtonUK | ✓ | ✓ |
+| `https://proton-api.eosiomadrid.io` | EOS Madrid | ✓ | ✓ |
+| `https://api-xprnetwork-main.saltant.io` | Saltant | ✓ | ✓ |
+| `https://xpr-mainnet-api.bloxprod.io` | BloxProd | ✓ | ✓ |
+| `https://proton-hyperion.luminaryvisn.com` | Luminary Vision | ✓ | ✓ |
+| `https://api.protonnz.com` | ProtonNZ | ✓ | — |
+| `https://proton.cryptolions.io` | CryptoLions | ✓ | — |
 
 **P2P Peer:** `p2p-protonmain.saltant.io:9876`
 
@@ -58,12 +63,27 @@ curl -s https://proton.eosusa.io/v1/chain/get_info | jq '.head_block_num'
 
 ## History API (Hyperion)
 
-### Mainnet
+### Mainnet — Hyperion-serving endpoints
 
-| Endpoint |
-|----------|
-| `https://proton.eosusa.io/v2/history/get_actions` |
-| `https://proton.eosusa.io/v2/history/get_transaction` |
+Six verified Hyperion endpoints on mainnet (full list above includes RPC-only operators). Use a rotation pattern across these — see [`rpc-queries.md → Endpoint Etiquette`](./rpc-queries.md#endpoint-etiquette-rpc--hyperion--read-before-deploying-an-agent) for the polite-fetch client.
+
+| Endpoint | Provider |
+|----------|----------|
+| `https://proton.eosusa.io` | EOSUSA |
+| `https://proton.protonuk.io` | ProtonUK |
+| `https://proton-api.eosiomadrid.io` | EOS Madrid |
+| `https://api-xprnetwork-main.saltant.io` | Saltant |
+| `https://xpr-mainnet-api.bloxprod.io` | BloxProd |
+| `https://proton-hyperion.luminaryvisn.com` | Luminary Vision |
+
+### Hyperion paths (all endpoints)
+
+| Path | Description |
+|------|-------------|
+| `/v2/history/get_actions` | Action history (with filter / account / limit) |
+| `/v2/history/get_transaction` | Transaction by ID |
+| `/v2/history/get_deltas` | Table delta history |
+| `/v2/state/get_account` | Account info with resources |
 
 ### Common Queries
 
@@ -130,10 +150,9 @@ https://explorer.xprnetwork.org/account/CONTRACT_NAME?tab=contract
 
 | Repository | Description |
 |------------|-------------|
-| [XPRNetwork/ts-smart-contracts](https://github.com/XPRNetwork/ts-smart-contracts) | Contract SDK (proton-tsc) |
-| [XPRNetwork/proton-web-sdk](https://github.com/XPRNetwork/proton-web-sdk) | Frontend wallet integration |
-| [XPRNetwork/proton-cli](https://github.com/XPRNetwork/proton-cli) | Command-line tools |
-| [XPRNetwork/proton-web-sdk](https://github.com/XPRNetwork/proton-web-sdk) | JavaScript RPC library |
+| [XPRNetwork/ts-smart-contracts](https://github.com/XPRNetwork/ts-smart-contracts) | Contract SDK (`proton-tsc`) |
+| [XPRNetwork/proton-web-sdk](https://github.com/XPRNetwork/proton-web-sdk) | Frontend wallet integration (`@proton/web-sdk`) — bundles `@proton/js` for RPC |
+| [XPRNetwork/proton-cli](https://github.com/XPRNetwork/proton-cli) | Command-line tools (`@proton/cli`) |
 
 ### Example Contracts
 
@@ -180,7 +199,7 @@ https://resources.xprnetwork.org
 
 | Resource | Cost |
 |----------|------|
-| RAM Storage | Dynamic (Bancor algorithm), ~0.000252 XPR per byte |
+| RAM Storage | Dynamic (Bancor algorithm) — query [`eosio::rammarket`](https://proton.eosusa.io/v1/chain/get_table_rows) for live price; **drifts**, don't hard-code |
 | Free RAM (WebAuth) | 12,000 bytes per account |
 | CPU/NET Basic | 100 XPR/month (~500 tx/day) |
 | CPU/NET Plus | 1,000 XPR/month (~5,000 tx/day) |
@@ -194,17 +213,69 @@ https://resources.xprnetwork.org
 | Testnet | XPR | `proton faucet:claim XPR myaccount` |
 | Testnet | Web | https://resources.xprnetwork.org/faucet |
 
-### Token Contracts
+### Token Contract Registry
 
-| Token | Contract | Decimals |
-|-------|----------|----------|
-| XPR | `eosio.token` | 4 |
-| XUSDT | `xtokens` | 6 |
-| XUSDC | `xtokens` | 6 |
-| FOOBAR | `xtokens` | 6 |
-| XBTC | `xtokens` | 8 |
-| XETH | `xtokens` | 8 |
-| LOAN | `loan.token` | 4 |
+Verified live (May 2026) via `get_currency_stats`. The **contract** column is what you pass as `account` in a `transfer` action; the **precision** must match exactly when constructing asset strings (`"1.0000 XPR"` is 4-decimal; `"1.000000 XUSDC"` is 6-decimal). Mismatching precision returns `Symbol mismatch` / asset-format errors.
+
+#### Native chain tokens
+
+| Token | Contract | Precision | Issuer | Notes |
+|-------|----------|-----------|--------|-------|
+| XPR | `eosio.token` | 4 | `eosio` | Native gas/staking token |
+| XMD | `xmd.token` | 6 | `xmd.treasury` | Metallicus USD stablecoin |
+| LOAN | `loan.token` | 4 | `lending.loan` | LOAN protocol governance |
+
+#### Tokens on the `xtokens` contract
+
+`xtokens` is a **multi-token contract** hosting wrapped representations of assets from other chains. Most tokens use an `X` prefix to mark them as the XPR Network wrapped version (e.g. `XBTC` for Bitcoin, `XETH` for Ethereum). A few don't follow that prefix convention — they're on `xtokens` all the same.
+
+| Token | Precision | Wraps |
+|-------|-----------|-------|
+| XUSDT | 6 | Tether USD |
+| XUSDC | 6 | USD Coin |
+| XBTC | 8 | Bitcoin |
+| XETH | 8 | Ethereum |
+| XBCH | 8 | Bitcoin Cash |
+| XLTC | 8 | Litecoin |
+| XBNB | 8 | Binance Coin |
+| XEOS | 4 | EOS |
+| XADA | 6 | Cardano |
+| XDOGE | 6 | Dogecoin |
+| XHBAR | 6 | Hedera |
+| XSOL | 6 | Solana |
+| XXRP | 6 | Ripple — **double-X prefix**, not single-X |
+| XXLM | 6 | Stellar — **double-X prefix**, not single-X |
+| METAL | 8 | Metal Blockchain native token (a separate **Layer 0** — **not MetalX**, the DEX/Swap product) |
+| XMT | 8 | MTL — Metal DAO governance token, XPR Network representation |
+
+> **Two naming gotchas to watch for:**
+> - **`XXRP` and `XXLM` use a double-X prefix.** Single-X variants on Alcor (e.g. `XRP@some-other-contract`) are unrelated to the canonical wrapped versions on `xtokens` and may have different precision or no liquidity.
+> - **`METAL` ≠ MetalX.** METAL is a wrapped representation of **Metal Blockchain** (a separate **Layer 0**, unrelated to XPR Network apart from this bridged token). MetalX is the DEX/Swap product on XPR Network. They share a brand prefix but refer to different things.
+
+#### Project tokens on their own contracts
+
+| Token | Contract | Precision | Project |
+|-------|----------|-----------|---------|
+| SNIPS | `snipcoins` | 4 | Snipcoins community |
+| STRX | `storex` | 4 | StoreX |
+
+#### Discovery
+
+To verify any token's current precision and issuer:
+
+```bash
+curl -s -X POST https://proton.eosusa.io/v1/chain/get_currency_stats \
+  -H 'Content-Type: application/json' \
+  -d '{"code":"<CONTRACT>","symbol":"<SYMBOL>"}'
+```
+
+The response gives `supply`, `max_supply`, and `issuer` for that token.
+
+#### Testnet placeholders
+
+| Token | Contract | Precision | Notes |
+|-------|----------|-----------|-------|
+| FOOBAR | `xtokens` | 6 | Test-only; do not reference in mainnet code paths |
 
 ---
 
@@ -291,9 +362,9 @@ curl -s -X POST https://proton.eosusa.io/v1/chain/get_table_rows \
 
 | Platform | Link |
 |----------|------|
-| **Discord** | https://discord.gg/xprnetwork |
 | **Telegram** | https://t.me/XPRNetwork |
 | **Twitter/X** | https://x.com/XPRNetwork |
+| **Help Desk** | https://help.xprnetwork.org |
 
 ---
 
@@ -365,7 +436,7 @@ proton table mycontract mytable
 
 - **Documentation issues**: https://github.com/XPRNetwork/ts-smart-contracts/issues
 - **CLI issues**: https://github.com/XPRNetwork/proton-cli/issues
-- **General questions**: Discord #developers channel
+- **General questions**: [Telegram](https://t.me/XPRNetwork) or the official [Help Desk](https://help.xprnetwork.org)
 
 ---
 

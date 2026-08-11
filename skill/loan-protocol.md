@@ -39,14 +39,14 @@ When you supply assets, you receive L-tokens representing your share of the pool
 | XETH | LETH | 8 | `shares.loan` |
 | XMD | LXMD | 6 | `shares.loan` |
 | XUSDT | LUSDT | 6 | `shares.loan` |
-| XMT (METAL) | LXMT | 8 | `shares.loan` |
-| XRP | LXRP | 6 | `shares.loan` |
-| DOGE | LDOGE | 6 | `shares.loan` |
-| HBAR | LHBAR | 6 | `shares.loan` |
-| ADA | LADA | 6 | `shares.loan` |
-| XLM | LXLM | 6 | `shares.loan` |
-| LTC | LLTC | 8 | `shares.loan` |
-| SOL | LSOL | 6 | `shares.loan` |
+| XMT (MTL — Metal DAO) | LXMT | 8 | `shares.loan` |
+| XXRP | LXRP | 6 | `shares.loan` |
+| XDOGE | LDOGE | 6 | `shares.loan` |
+| XHBAR | LHBAR | 6 | `shares.loan` |
+| XADA | LADA | 6 | `shares.loan` |
+| XXLM | LXLM | 6 | `shares.loan` |
+| XLTC | LLTC | 8 | `shares.loan` |
+| XSOL | LSOL | 6 | `shares.loan` |
 
 L-token values increase over time as interest accrues, so you get back more than you deposited.
 
@@ -75,7 +75,7 @@ Maximum borrowing power as percentage of collateral:
 | XBTC | 70% |
 | XETH | 70% |
 | XMD | 90% |
-| XMT (Metal) | 50% |
+| XMT (MTL — Metal DAO) | 50% |
 | XDOGE | 60% |
 | XADA | 60% |
 | XLTC | 60% |
@@ -415,7 +415,16 @@ proton action xtokens transfer '{"from":"myaccount","to":"lending.loan","quantit
 | Contract | `loan.token` |
 | Symbol | LOAN |
 | Precision | 4 |
-| Max Supply | 100,000,000 LOAN |
+| Max Supply | Unbounded (`0.0000 LOAN` on the token contract — i.e. no cap) |
+| Circulating (July 2026) | ~113.7 billion LOAN |
+
+> **Note:** Earlier versions of this doc claimed a 100,000,000 LOAN max supply. That was wrong — `eosio.token::stat` shows `max_supply: 0.0000 LOAN` (unbounded) and `supply` already exceeds 113 billion. Verify the current supply with:
+>
+> ```bash
+> curl -s -X POST https://proton.eosusa.io/v1/chain/get_currency_stats \
+>   -H 'Content-Type: application/json' \
+>   -d '{"code":"loan.token","symbol":"LOAN"}'
+> ```
 
 ### Staking LOAN
 

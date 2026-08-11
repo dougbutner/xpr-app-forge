@@ -122,7 +122,8 @@ Copy a prompt as-is. Each stays **fun**, uses **real blockchain job** (identity,
 
 | Doc | Purpose |
 |-----|---------|
-| [`skill/README.md`](skill/README.md) | Index of `skill/` reference modules |
+| [`skill/SKILL.md`](skill/SKILL.md) | Upstream XPR skill routing table (v2.3.2) |
+| [`skill/README.md`](skill/README.md) | Local map + extras (Alcor `/v/xpr/`, flextokens) |
 | [`.agents/skills/xpr-network/SKILL.md`](.agents/skills/xpr-network/SKILL.md) | Umbrella Agent Skill → which `skill/` to open |
 | [`.agents/skills/smart-contracts/SKILL.md`](.agents/skills/smart-contracts/SKILL.md) | Contract build / deploy / safety |
 | [`.agents/skills/web-sdk/SKILL.md`](.agents/skills/web-sdk/SKILL.md) | WebAuth / `@proton/web-sdk` wallets |

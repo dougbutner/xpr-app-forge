@@ -21,14 +21,17 @@ Use **[`skill/metalx-dex.md`](../../../skill/metalx-dex.md)** and **`skill/defi-
 
 ## Instructions
 
-1. Open **[`skill/alcor-exchange.md`](../../../skill/alcor-exchange.md)** for the module index and XPR quick reference.
-2. Follow the linked topic files from that index (overview, orderbook, swap/AMM, API/realtime, widgets/ecosystem).
-3. Confirm contract names, memos, and ABIs on **[explorer.xprnetwork.org](https://explorer.xprnetwork.org/)** before mainnet. **`reward.alcor`** on XPR has **no published swap ABI**—farm logic is on **`swap.alcor`**.
+1. Open **[`skill/alcor-dex.md`](../../../skill/alcor-dex.md)** (upstream ABI/API guide from xpr-network-dev-skill).
+2. Open **[`skill/alcor-exchange.md`](../../../skill/alcor-exchange.md)** for the local `/v/xpr/` module index.
+3. Follow the linked topic files from that index (overview, orderbook, swap/AMM, API/realtime, widgets/ecosystem).
+4. Confirm contract names, memos, and ABIs on **[explorer.xprnetwork.org](https://explorer.xprnetwork.org/)** before mainnet. **`reward.alcor`** on XPR has **no published swap ABI**—farm logic is on **`swap.alcor`**.
 
 ## Related modules
 
 | Topic | File |
 |--------|------|
+| Upstream Alcor DEX | [`skill/alcor-dex.md`](../../../skill/alcor-dex.md) |
+| Local `/v/xpr/` index | [`skill/alcor-exchange.md`](../../../skill/alcor-exchange.md) |
 | Alcor overview / UI / fees | [`skill/alcor-overview-ui.md`](../../../skill/alcor-overview-ui.md) |
 | Alcor orderbook | [`skill/alcor-orderbook.md`](../../../skill/alcor-orderbook.md) |
 | Alcor AMM + TWAP | [`skill/alcor-swap-amm.md`](../../../skill/alcor-swap-amm.md) |

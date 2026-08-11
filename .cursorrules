@@ -35,7 +35,7 @@ For generating code:
 
 Follow strictly the project parameters in parameters.md
 
-The **`skill/`** folder at the repo root holds markdown references for XPR / EOSIO (contracts, CLI, RPC, DeFi, etc.)—see **`skill/README.md`**. Cursor Agent Skills live under **`.agents/skills/`** and must be read before deep chain work: **`xpr-network`** (index), **`smart-contracts`**, **`web-sdk`**, **`rpc-queries`**, **`nfts-atomicassets`**, **`oracles-randomness`**, **`alcor-exchange`**. Each skill points at the matching **`skill/*.md`**. For this app’s UI and wallets, follow **`src/`** and `walletConstants.ts`.
+The **`skill/`** folder holds XPR / EOSIO reference markdown synced from **[XPRNetwork/xpr-network-dev-skill](https://github.com/XPRNetwork/xpr-network-dev-skill)** (see **`skill/SKILL.md`**). Local extras (Alcor `/v/xpr/` split, flextokens) stay—do not delete them when syncing. Cursor Agent Skills under **`.agents/skills/`**: **`xpr-network`**, **`smart-contracts`**, **`web-sdk`**, **`rpc-queries`**, **`nfts-atomicassets`**, **`oracles-randomness`**, **`alcor-exchange`**. For this app’s UI and wallets, follow **`src/`** and `walletConstants.ts`.
 
 
 

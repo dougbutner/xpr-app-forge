@@ -1,11 +1,14 @@
 # Alcor Exchange — skill index
 
-Condensed from **[Alcor documentation](https://docs.alcor.exchange/)** (GitBook). Verbatim text: site, **[llms-full.txt](https://docs.alcor.exchange/llms-full.txt)**, **[sitemap](https://docs.alcor.exchange/sitemap.md)**. Docs WIP; not financial advice. **Entry point** ↓
+Condensed from **[Alcor documentation](https://docs.alcor.exchange/)** (GitBook). Verbatim text: site, **[llms-full.txt](https://docs.alcor.exchange/llms-full.txt)**, **[sitemap](https://docs.alcor.exchange/sitemap.md)**. Docs WIP; not financial advice.
+
+**Upstream ABI / API guide (synced):** [`alcor-dex.md`](alcor-dex.md) from [xpr-network-dev-skill](https://github.com/XPRNetwork/xpr-network-dev-skill). Use that for contracts, memos, and REST; use this index + split files for **`/v/xpr/`** link rules.
 
 ## Module map
 
 | Topic | File |
 |--------|------|
+| Upstream Alcor DEX (order book + v3 AMM) | [`alcor-dex.md`](alcor-dex.md) |
 | Product / UI / fees / community / XPR notes | [`alcor-overview-ui.md`](alcor-overview-ui.md) |
 | Orderbook / tables / memos / RPC | [`alcor-orderbook.md`](alcor-orderbook.md) |
 | AMM `swap.alcor`, memos, CL, TWAP | [`alcor-swap-amm.md`](alcor-swap-amm.md) |
