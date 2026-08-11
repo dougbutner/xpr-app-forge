@@ -11,7 +11,7 @@ Use it as a **copy template** for games and playful on-chain apps. Wallet code s
 - Connect **WebAuth** (browser / mobile) via [`@proton/web-sdk`](https://docs.xprnetwork.org/client-sdks/web.html) + `@proton/link`, or **Anchor** via WharfKit
 - Remember several wallets, switch the active signer, sign with `useProton().transact`
 - Black / gold theme tokens in `src/index.css` (`.btn`, `.input`, `.card`)
-- `skill/` markdown for contracts, RPC, NFTs, testing; Cursor skills under `.agents/skills/`
+- `skill/` markdown for contracts, RPC, NFTs, testing; Cursor Agent Skills under `.agents/skills/` (thin wrappers → `skill/`)
 
 Not included on purpose: DeFi dashboards, swaps, portfolios, or financial-product scaffolding.
 
@@ -43,8 +43,8 @@ src/
   pages/Index.tsx         # Home
   pages/NotFound.tsx
   services/               # Wallet restore, WebAuth, Anchor, constants
-skill/                    # XPR / EOSIO guides
-.agents/skills/           # smart-contracts, alcor-exchange
+skill/                    # XPR / EOSIO reference markdown (not Agent Skills)
+.agents/skills/           # Cursor skills: xpr-network, web-sdk, rpc-queries, …
 ```
 
 ---
@@ -122,8 +122,11 @@ Copy a prompt as-is. Each stays **fun**, uses **real blockchain job** (identity,
 
 | Doc | Purpose |
 |-----|---------|
-| [`skill/SKILL.md`](skill/SKILL.md) | Index of `skill/` modules |
+| [`skill/README.md`](skill/README.md) | Index of `skill/` reference modules |
+| [`.agents/skills/xpr-network/SKILL.md`](.agents/skills/xpr-network/SKILL.md) | Umbrella Agent Skill → which `skill/` to open |
 | [`.agents/skills/smart-contracts/SKILL.md`](.agents/skills/smart-contracts/SKILL.md) | Contract build / deploy / safety |
+| [`.agents/skills/web-sdk/SKILL.md`](.agents/skills/web-sdk/SKILL.md) | WebAuth / `@proton/web-sdk` wallets |
+| [`.agents/skills/alcor-exchange/SKILL.md`](.agents/skills/alcor-exchange/SKILL.md) | Alcor DEX / AMM (not MetalX) |
 | [`AI_BUILDER_GUIDE.md`](AI_BUILDER_GUIDE.md) | UI + NFT metadata conventions |
 | [`Welcome.md`](Welcome.md) | First-session questions |
 | [`parameters.md`](parameters.md) | Template goals & style constraints |

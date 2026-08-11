@@ -27,3 +27,4 @@ Use this at the start of a session (human or AI).
 - Keep `src/services/*` and `useProton` unless fixing a wallet bug.
 - Add game UI under `src/pages` / `src/components`.
 - Contracts → `.agents/skills/smart-contracts/SKILL.md` + `skill/safety-guidelines.md`.
+- Wallets / RPC / NFTs / RNG → matching skills under `.agents/skills/` (or `.agents/skills/xpr-network/SKILL.md` for the map).

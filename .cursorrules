@@ -35,7 +35,7 @@ For generating code:
 
 Follow strictly the project parameters in parameters.md
 
-The **`skill/`** folder at the repo root holds markdown references for XPR / EOSIO (contracts, CLI, RPC, DeFi, etc.). For **on-chain smart contract** work, use the Agent Skill **`.agents/skills/smart-contracts/SKILL.md`**, which points at **`skill/smart-contracts.md`** and **`skill/safety-guidelines.md`**. For this app’s UI and wallets, follow **`src/`** and `walletConstants.ts`.
+The **`skill/`** folder at the repo root holds markdown references for XPR / EOSIO (contracts, CLI, RPC, DeFi, etc.)—see **`skill/README.md`**. Cursor Agent Skills live under **`.agents/skills/`** and must be read before deep chain work: **`xpr-network`** (index), **`smart-contracts`**, **`web-sdk`**, **`rpc-queries`**, **`nfts-atomicassets`**, **`oracles-randomness`**, **`alcor-exchange`**. Each skill points at the matching **`skill/*.md`**. For this app’s UI and wallets, follow **`src/`** and `walletConstants.ts`.
 
 
 

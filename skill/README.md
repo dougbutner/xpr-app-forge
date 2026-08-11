@@ -1,6 +1,6 @@
 # `skill/` — XPR reference markdown
 
-Grounding for humans/AI: EOSIO/XPR (contracts, CLI, RPC, DeFi, NFTs). Not app source.
+Human/AI grounding for EOSIO/XPR (contracts, CLI, RPC, DeFi, NFTs). **Not** app source and **not** a Cursor Agent Skill—those live under **`.agents/skills/`** and point here.
 
 **Contracts:** [`smart-contracts.md`](smart-contracts.md), [`safety-guidelines.md`](safety-guidelines.md).
 
