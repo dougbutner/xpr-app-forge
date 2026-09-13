@@ -34,7 +34,8 @@ const Index = () => {
 
       <main className="flex flex-1 flex-col items-center justify-center gap-8 p-6">
         <div className="max-w-md text-center">
-          <h2 className="text-3xl font-bold">XPR Network game template</h2>
+          <p className="text-xs font-medium uppercase tracking-[var(--tetra-tracking-ui)] text-primary">XPR Network</p>
+          <h2 className="mt-2 text-3xl">Game template</h2>
           <p className="mt-2 text-muted-foreground">
             Vanilla shell: connect WebAuth or Anchor, keep several accounts, switch the active signer, and push
             contract actions. Copy this repo, then build a game on top—scores, turns, collectibles, rooms—using{" "}
@@ -45,7 +46,7 @@ const Index = () => {
         <TransactionForm onTransact={transact} isLoggedIn={isLoggedIn} />
       </main>
 
-      <footer className="border-t px-6 py-4 text-center text-sm text-muted-foreground">
+      <footer className="border-t border-[var(--tetra-glass-border)] px-6 py-4 text-center text-sm text-muted-foreground">
         <p>
           Template by{" "}
           <a

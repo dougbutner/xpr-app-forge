@@ -50,7 +50,7 @@ export function TransactionForm({ onTransact, isLoggedIn }: TransactionFormProps
 
   return (
     <section className="card w-full max-w-lg p-6">
-      <h2 className="text-lg font-semibold">Push Transaction</h2>
+      <h2 className="text-lg">Push Transaction</h2>
       <p className="mt-1 text-sm text-muted-foreground">Send an action to any XPR Network smart contract.</p>
 
       <form onSubmit={handleSubmit} className="mt-4 space-y-4">
@@ -86,12 +86,12 @@ export function TransactionForm({ onTransact, isLoggedIn }: TransactionFormProps
         </label>
 
         {result && (
-          <p className={`rounded-md p-3 text-sm ${result.success ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive"}`}>
+          <p className={`p-3 text-sm ${result.success ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive"}`}>
             {result.message}
           </p>
         )}
 
-        <button type="submit" className="btn btn-primary w-full" disabled={!isLoggedIn || submitting}>
+        <button type="submit" className="tetra-btn tetra-btn--primary w-full" disabled={!isLoggedIn || submitting}>
           {submitting ? "Sending…" : !isLoggedIn ? "Connect Wallet First" : "Send Transaction"}
         </button>
       </form>

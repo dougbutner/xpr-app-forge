@@ -37,25 +37,25 @@ export function Header({
   };
 
   return (
-    <header className="flex items-center justify-between border-b px-6 py-4">
+    <header className="flex items-center justify-between border-b border-[var(--tetra-glass-border)] px-6 py-4">
       <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-          <span className="text-lg font-bold text-primary-foreground">X</span>
+        <div className="flex h-9 w-9 items-center justify-center bg-primary">
+          <span className="text-lg font-medium text-primary-foreground">X</span>
         </div>
-        <h1 className="text-xl font-semibold">XPR Network game template</h1>
+        <h1 className="text-sm tracking-[var(--tetra-tracking-ui)]">XPR Network game template</h1>
       </div>
 
       <div className="flex items-center gap-2">
         {isLoggedIn && actor ? (
           <details className="relative">
-            <summary className="btn btn-outline btn-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+            <summary className="tetra-btn btn-sm cursor-pointer list-none [&::-webkit-details-marker]:hidden">
               <span className="max-w-[140px] truncate">{actor}</span>
               <span aria-hidden>▾</span>
             </summary>
-            <div className="absolute right-0 z-50 mt-2 w-80 rounded-md border bg-popover p-2 shadow-md">
+            <div className="absolute right-0 z-50 mt-2 w-80 border bg-popover p-2">
               <div className="flex items-center gap-2 px-2 py-2">
                 <span className="min-w-0 flex-1 truncate font-medium">{actor}</span>
-                <button type="button" className="btn btn-ghost btn-sm" onClick={copyActor}>
+                <button type="button" className="tetra-btn tetra-btn--ghost btn-sm" onClick={copyActor}>
                   {copied ? "Copied" : "Copy"}
                 </button>
               </div>
@@ -65,7 +65,7 @@ export function Header({
                 {wallets.map((w) => {
                   const active = w.id === activeId;
                   return (
-                    <li key={w.id} className="flex items-center gap-2 rounded px-2 py-2 hover:bg-accent">
+                    <li key={w.id} className="flex items-center gap-2 px-2 py-2 hover:bg-secondary">
                       <button
                         type="button"
                         className="min-w-0 flex-1 text-left"
@@ -79,7 +79,7 @@ export function Header({
                       {active && <span className="text-xs text-primary">active</span>}
                       <button
                         type="button"
-                        className="btn btn-ghost btn-sm text-muted-foreground hover:text-destructive"
+                        className="tetra-btn tetra-btn--ghost btn-sm text-muted-foreground hover:text-destructive"
                         aria-label="Disconnect wallet"
                         onClick={() => void onRemoveWallet(w.id)}
                       >
@@ -90,15 +90,15 @@ export function Header({
                 })}
               </ul>
               <hr className="my-2 border-border" />
-              <button type="button" className="btn btn-outline btn-sm mb-2 w-full" onClick={() => void onAddWebAuth()}>
+              <button type="button" className="tetra-btn btn-sm mb-2 w-full" onClick={() => void onAddWebAuth()}>
                 + WebAuth / mobile
               </button>
-              <button type="button" className="btn btn-outline btn-sm mb-2 w-full" onClick={() => void onAddAnchor()}>
+              <button type="button" className="tetra-btn btn-sm mb-2 w-full" onClick={() => void onAddAnchor()}>
                 + Anchor
               </button>
               <button
                 type="button"
-                className="btn btn-ghost btn-sm w-full text-muted-foreground hover:text-destructive"
+                className="tetra-btn tetra-btn--ghost btn-sm w-full text-muted-foreground hover:text-destructive"
                 onClick={() => void onDisconnectAll()}
               >
                 Disconnect all
@@ -107,10 +107,10 @@ export function Header({
           </details>
         ) : (
           <>
-            <button type="button" className="btn btn-primary btn-sm" disabled={loading} onClick={() => void onAddWebAuth()}>
+            <button type="button" className="tetra-btn tetra-btn--primary btn-sm" disabled={loading} onClick={() => void onAddWebAuth()}>
               {loading ? "Restoring…" : "WebAuth / mobile"}
             </button>
-            <button type="button" className="btn btn-outline btn-sm" disabled={loading} onClick={() => void onAddAnchor()}>
+            <button type="button" className="tetra-btn btn-sm" disabled={loading} onClick={() => void onAddAnchor()}>
               Anchor
             </button>
           </>
